@@ -19,11 +19,11 @@ public class SubCameraController : MonoBehaviour
     {
         m_cam = GetComponent<Camera>();
     }
-
-	void Update ()
+    
+    void Update()
     {
         AdjustCamera();
-	}
+    }
 
     void AdjustCamera()
     {
@@ -47,10 +47,8 @@ public class SubCameraController : MonoBehaviour
 
         foreach(var target in m_targetList)
         {
-            Vector3 targetLocalPos = transform.InverseTransformPoint(target.transform.position);
-            Vector3 desiredPosToTarget = targetLocalPos;
-            size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.y));
-            size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.x));
+            Vector3 desiredPosToTarget = transform.InverseTransformPoint(target.transform.position);
+            size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.x), Mathf.Abs(desiredPosToTarget.y));
         }
 
         return size + m_zoomBuffer;
